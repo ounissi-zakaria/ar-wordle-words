@@ -1,3 +1,4 @@
+import random
 def main():
     # read arabic words
     with open("arabic-words.txt", encoding="utf-8") as words_f:
@@ -22,6 +23,14 @@ def main():
         # Replace all variants of alif (أ، إ، آ) with bare alif (ا).
         alifs = ["\u0622", "\u0623", "\u0625"]
         words = [replace_group(word, alifs, replace_by="\u0627") for word in words]
+
+        #remove duplicates 
+        words = list(set(words))
+
+        # randomize word order
+        random.seed(123)
+        words = sorted(words, key = lambda word: random.random())
+
 
     # write output to file
     with open("5-letter-ar-words.txt", "w+", encoding="utf-8") as new_words_f:
