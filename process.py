@@ -1,7 +1,7 @@
 import random
 def main():
     # read arabic words
-    with open("arabic-words.txt", encoding="utf-8") as words_f:
+    with open("arabic-wordlist-1.6.txt", encoding="utf-8") as words_f:
         words = words_f.readlines()
         # remove harakat and newline from words
         extras = ["\u064B", "\u064C", "\u064D", "\u064E", "\u064F", "\u0650", "\u0652", "\n"]
