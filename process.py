@@ -11,13 +11,13 @@ def main():
         words = filter(is_5_letters, words)
         words = list(words)
 
-        # removes words that contain spaces (_) or colons (:)
-        words = filter(lambda word: not (("_" in word) or (":" in word)), words)
-        words = list(words)
-
         # Replace all variants of alif (أ، إ، آ) with bare alif (ا).
         alifs = ["\u0622", "\u0623", "\u0625"]
         words = [replace_group(word, alifs, replace_by="\u0627") for word in words]
+
+        # removes words that contain spaces (_) or colons (:)
+        words = filter(is_arabic_only, words)
+        words = list(words)
 
         #remove duplicates 
         words = list(set(words))
@@ -47,5 +47,15 @@ def replace_group(word: str, group: list, replace_by: str = "") -> str:
     
     return word
 
+def is_arabic_only(word):
+    """
+    Checks if word only contains arabic letters
+    """
+    horof = ("ضصثقفغعهخحجدشسيبلاتنمكطذئءؤرىةوزظّ")
+    for letter in (word):
+        if letter not in horof:
+            return False
+
+    return True
 if __name__ == "__main__":
     main()
