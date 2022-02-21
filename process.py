@@ -15,9 +15,9 @@ def main():
         words = filter(lambda word: not (("_" in word) or (":" in word)), words)
         words = list(words)
 
-        # # Replace all variants of alif (أ، إ، آ) with bare alif (ا).
-        # alifs = ["\u0622", "\u0623", "\u0625"]
-        # words = [replace_group(word, alifs, replace_by="\u0627") for word in words]
+        # Replace all variants of alif (أ، إ، آ) with bare alif (ا).
+        alifs = ["\u0622", "\u0623", "\u0625"]
+        words = [replace_group(word, alifs, replace_by="\u0627") for word in words]
 
         #remove duplicates 
         words = list(set(words))
